@@ -4,4 +4,4 @@ PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin
 export PATH
 
 exec 2>&1
-ruby /home/run/www/harrier/scripts/twitter/twitter_itunes.rb
+exec setuidgid run ruby /home/run/www/harrier/scripts/twitter/twitter_itunes.rb
