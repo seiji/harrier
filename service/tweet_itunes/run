@@ -1,7 +1,13 @@
-!/bin/sh
+#!/bin/sh
 
 PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin
 export PATH
-
 exec 2>&1
-exec setuidgid run ruby /home/run/www/harrier/scripts/twitter/twitter_itunes.rb
+exec setuidgid run bash -c '
+  cd /home/run/www/harrier;
+  export HOME=/home/run
+  rvm_path=/usr/local/rvm;
+  source /usr/local/rvm/scripts/rvm;
+  exec ruby scripts/twitter/twitter_itunes.rb
+'
+          
