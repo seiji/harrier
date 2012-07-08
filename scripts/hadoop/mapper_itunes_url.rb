@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 require 'mongo-hadoop'
-require 'url_expander'
-require 'hugeurl'
 
 MongoHadoop.map do |document|
   if document['entities']['urls'] and document['entities']['urls'].size != 0
@@ -18,12 +16,6 @@ MongoHadoop.map do |document|
         app_name, id = $1, $2
       else
         warn "WARN #{expanded_url}"
-        begin
-          warn puts URI.parse(expanded_url).to_huge
-   #       url = UrlExpander::Client.expand(expanded_url)
-   #       puts url
-        rescue 
-        end
       end
       unless id 
         [{ :_id => 'UnknownID', :count => 1 }]
