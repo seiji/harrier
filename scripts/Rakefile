@@ -13,5 +13,5 @@ end
 
 task :count_itunes do
   puts "counting"
-  `hadoop jar hadoop/mongo-hadoop-streaming-assembly*.jar -mapper mapper_itunes_url.rb -reducer reducer.rb -inputURI mongodb://127.0.0.1/twitter.itunes -outputURI mongodb://127.0.0.1/twitter.itunes_app`
+  `hadoop jar hadoop/mongo-hadoop-streaming-assembly*.jar -mapper hadoop/mapper_itunes_url.rb -reducer hadoop/reducer.rb -inputURI mongodb://127.0.0.1/twitter.itunes -outputURI mongodb://127.0.0.1/twitter.itunes_app`
 end
