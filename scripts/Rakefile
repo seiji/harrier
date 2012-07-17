@@ -11,6 +11,13 @@ task :get do
   `curl https://stream.twitter.com/1/statuses/filter.json?track="itunes" -u#{TWITTER_CONFIG['user']}:#{TWITTER_CONFIG['pass']} | mongoimport -d twitter -c in`
 end
 
+task :sample do
+  require 'pit'
+  TWITTER_CONFIG = Pit.get('twitter.com')
+  puts "get twitter sample data"
+  `curl https://stream.twitter.com/1/statuses/sample.json -u#{TWITTER_CONFIG['user']}:#{TWITTER_CONFIG['pass']} | mongoimport -d twitter -c sample`
+end
+
 task :count_itunes do
   puts "counting"
   `hadoop jar hadoop/mongo-hadoop-streaming-assembly*.jar -mapper hadoop/mapper_itunes_url.rb -reducer hadoop/reducer.rb -inputURI mongodb://127.0.0.1/twitter.itunes -outputURI mongodb://127.0.0.1/twitter.itunes_app`
