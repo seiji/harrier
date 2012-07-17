@@ -2,7 +2,11 @@
 require 'mongo-hadoop'
 
 MongoHadoop.map do |document|
-  if document['entities']['urls'] and document['entities']['urls'].size != 0
+  if document
+    and document['entities']
+    and document['entities']['urls']
+    and document['entities']['urls'].size != 0
+
     entity_url = document['entities']['urls'][0]
     unless entity_url
       [{ :_id => 'NoEntity', :count => 1 }]
