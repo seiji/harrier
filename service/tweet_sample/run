@@ -8,5 +8,6 @@ exec setuidgid run bash -c '
   export HOME=/home/run
   rvm_path=/usr/local/rvm;
   source /usr/local/rvm/scripts/rvm;
+  source /etc/profile;
   exec ruby scripts/input/twitter_sample.rb
 '
